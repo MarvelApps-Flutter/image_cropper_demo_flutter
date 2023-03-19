@@ -73,54 +73,8 @@ class _DashboardPageState extends State<DashboardPage> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset("assets/successiveLogo.png",
-                    height: 150, width: 150),
-                // Column(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     InkWell(
-                //       onTap: () async {
-                //         // pickedImage =
-                //         await pickImage(ImageSource.gallery);
-                //         // setState(() {
-                //         //   //openPopUp = true;
-                //         //   pickedImage = pickedImage;
-                //         // });
-                //       },
-                //       child: Container(
-                //         height: 200,
-                //         width: 200,
-                //         //color: Colors.white,
-                //         decoration: const BoxDecoration(
-                //             shape: BoxShape.circle, color: Colors.white),
-                //         child: Center(
-                //           child: pickedImage == null
-                //               ? Text(name![0].toUpperCase(),
-                //                   style: const TextStyle(
-                //                       color: Colors.red, fontSize: 40))
-                //               : Container(height: 200, ),
-                //         ),
-                //       ),
-                //     ),
-
-                //     // printing Name
-                //     const SizedBox(height: 20),
-
-                //     Text(name == null ? "Default" : name ?? "",
-                //         style: const TextStyle(
-                //             color: Colors.black, fontWeight: FontWeight.bold)),
-                //     Text(email1 == null ? "Email not found" : email1 ?? "",
-                //         style: const TextStyle(
-                //             color: Colors.black, fontWeight: FontWeight.bold))
-                //   ],
-                // ),
-              ],
-            ),
+            child: Image.asset("assets/successiveLogo.png",
+                height: 150, width: 150),
           ),
         ),
       ),
