@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_cropper_demo_app/screens/loginPage.dart';
-//import 'package:info_app/screens/signupPage.dart';
-//import 'package:info_app/screens/dashboardPage.dart';
-//import 'package:info_app/screens/profilePage.dart';
-
-//import 'package:info_app/screens/signupPage.dart';
-//import 'dart:async';
-//import 'package:path/path.dart';
-
-//import 'screens/dashboardPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

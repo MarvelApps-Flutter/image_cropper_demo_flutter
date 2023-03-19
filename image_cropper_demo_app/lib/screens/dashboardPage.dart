@@ -1,7 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_cropper_demo_app/helper/helper_functions.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_cropper_demo_app/screens/galleryPage.dart';
 import 'package:image_cropper_demo_app/screens/loginPage.dart';
 import 'package:image_cropper_demo_app/screens/profilePage.dart';
@@ -20,6 +21,45 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   File? pickedImage;
   bool openPopUp = false;
+  Future<File?> pickImage(ImageSource imageType) async {
+    File? tempImage;
+    try {
+      final photo =
+          await ImagePicker().pickImage(source: imageType, imageQuality: 100);
+      if (photo == null) return null;
+      // final tempImage = File(photo.path);
+      tempImage = File(photo.path);
+
+      tempImage = await _cropImage(imageFile: tempImage);
+      setState(() {
+        pickedImage = tempImage;
+      });
+    } catch (error) {
+      log(error.toString());
+    }
+    return tempImage;
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    try {
+      CroppedFile? croppedImg = await ImageCropper().cropImage(
+          sourcePath: imageFile.path,
+          // maxHeight: 140,
+          // maxWidth: 240,
+
+          compressQuality: 100);
+
+      if (croppedImg == null) {
+        return null;
+      } else {
+        return File(croppedImg.path);
+      }
+    } catch (e) {
+      print(e);
+      // return ;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,53 +69,56 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.red,
+          alignment: Alignment.center,
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset("assets/successiveLogo.png",
                     height: 150, width: 150),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () async {
-                        pickedImage = await pickImage(ImageSource.gallery);
-                        setState(() {
-                          //openPopUp = true;
-                          pickedImage = pickedImage;
-                        });
-                      },
-                      child: Container(
-                        height: 90,
-                        width: 90,
-                        //color: Colors.white,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        child: Center(
-                          child: pickedImage == null
-                              ? Text(name![0].toUpperCase(),
-                                  style: const TextStyle(
-                                      color: Colors.red, fontSize: 40))
-                              : Image.file(pickedImage!),
-                        ),
-                      ),
-                    ),
+                // Column(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     InkWell(
+                //       onTap: () async {
+                //         // pickedImage =
+                //         await pickImage(ImageSource.gallery);
+                //         // setState(() {
+                //         //   //openPopUp = true;
+                //         //   pickedImage = pickedImage;
+                //         // });
+                //       },
+                //       child: Container(
+                //         height: 200,
+                //         width: 200,
+                //         //color: Colors.white,
+                //         decoration: const BoxDecoration(
+                //             shape: BoxShape.circle, color: Colors.white),
+                //         child: Center(
+                //           child: pickedImage == null
+                //               ? Text(name![0].toUpperCase(),
+                //                   style: const TextStyle(
+                //                       color: Colors.red, fontSize: 40))
+                //               : Container(height: 200, ),
+                //         ),
+                //       ),
+                //     ),
 
-                    // printing Name
-                    const SizedBox(height: 20),
+                //     // printing Name
+                //     const SizedBox(height: 20),
 
-                    Text(name == null ? "Default" : name ?? "",
-                        style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold)),
-                    Text(email1 == null ? "Email not found" : email1 ?? "",
-                        style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold))
-                  ],
-                ),
+                //     Text(name == null ? "Default" : name ?? "",
+                //         style: const TextStyle(
+                //             color: Colors.black, fontWeight: FontWeight.bold)),
+                //     Text(email1 == null ? "Email not found" : email1 ?? "",
+                //         style: const TextStyle(
+                //             color: Colors.black, fontWeight: FontWeight.bold))
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -114,13 +157,23 @@ class _DashboardPageState extends State<DashboardPage> {
                         //color: Colors.white,
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
-                        child: Center(
-                          child: pickedImage == null
-                              ? Text(name![0].toUpperCase(),
-                                  style: const TextStyle(
-                                      color: Colors.red, fontSize: 40))
-                              : Image.file(pickedImage!),
-                        ),
+                        child: pickedImage != null
+                            ? Container(
+                                height: 90,
+                                width: 90,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: FileImage(
+                                          pickedImage!,
+                                        ),
+                                        fit: BoxFit.cover)),
+                              )
+                            : Container(
+                                alignment: Alignment.center,
+                                child: Text(name![0].toUpperCase(),
+                                    style: const TextStyle(
+                                        color: Colors.red, fontSize: 40))),
                       ),
                     ),
 
