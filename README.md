@@ -5,7 +5,7 @@ A flutter app demonstrating Image Cropper.
  # Demo
   <table>
   <tr>
-  <td><img src="https://github.com/MarvelApps-Flutter/image_cropper_demo_flutter/blob/master/working_demo/shared_preference_demo.gif" height="480px"></td>
+  <td><img src="https://github.com/MarvelApps-Flutter/image_cropper_demo_flutter/blob/master/working_demo/image_cropper_demo.gif" height="480px"></td>
     </tr>
   </table>
 
