@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:image_cropper_demo_app/screens/galleryPage.dart';
+import 'package:image_cropper_demo_app/constants/image_constants.dart';
+import 'package:image_cropper_demo_app/constants/string_constants.dart';
 import 'package:image_cropper_demo_app/screens/loginPage.dart';
 import 'package:image_cropper_demo_app/screens/profilePage.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../helper/authenticationFunctions.dart';
 
@@ -27,7 +27,6 @@ class _DashboardPageState extends State<DashboardPage> {
       final photo =
           await ImagePicker().pickImage(source: imageType, imageQuality: 100);
       if (photo == null) return null;
-      // final tempImage = File(photo.path);
       tempImage = File(photo.path);
 
       tempImage = await _cropImage(imageFile: tempImage);
@@ -53,17 +52,17 @@ class _DashboardPageState extends State<DashboardPage> {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dashboard"),
+        title: const Text(StringConstants.dashboard),
         centerTitle: true,
       ),
       body: Container(
-        //alignment: Alignment.center,
         height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width,
         child: Center(
@@ -81,7 +80,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             image: FileImage(pickedImage!), fit: BoxFit.cover)),
                   ),
                 )
-              : Image.asset("assets/successiveLogo.png",
+              : Image.asset(ImageConstant.successiveSignupLogo,
                   height: 150, width: 150),
         ),
       ),
@@ -108,7 +107,6 @@ class _DashboardPageState extends State<DashboardPage> {
                       onTap: () async {
                         pickedImage = await pickImage(ImageSource.gallery);
                         setState(() {
-                          //openPopUp = true;
                           pickedImage = pickedImage;
                         });
                       },
@@ -141,10 +139,16 @@ class _DashboardPageState extends State<DashboardPage> {
                     // printing Name
                     const SizedBox(height: 20),
 
-                    Text(name == null ? "Default" : name ?? "",
+                    Text(
+                        name == null
+                            ? StringConstants.defaultLabel
+                            : name ?? "",
                         style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold)),
-                    Text(email1 == null ? "Email not found" : email1 ?? "",
+                    Text(
+                        email1 == null
+                            ? StringConstants.emailNotFound
+                            : email1 ?? "",
                         style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold))
                   ],
@@ -169,7 +173,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     SizedBox(width: 10),
                     Text(
-                      "Profile",
+                      StringConstants.profile,
                       style: TextStyle(
                           fontSize: 19,
                           color: Colors.black87,
@@ -190,7 +194,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "Change Password",
+                        StringConstants.changePassword,
                         style: TextStyle(
                             fontSize: 19,
                             color: Colors.black87,
@@ -204,12 +208,7 @@ class _DashboardPageState extends State<DashboardPage> {
               // Gallery
 
               TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const GalleryPage()));
-                  },
+                  onPressed: () {},
                   child: Row(
                     children: const [
                       Icon(
@@ -218,7 +217,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "Gallery",
+                        StringConstants.gallery,
                         style: TextStyle(
                             fontSize: 19,
                             color: Colors.black87,
@@ -241,7 +240,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "Settings",
+                        StringConstants.settings,
                         style: TextStyle(
                             fontSize: 19,
                             color: Colors.black87,
@@ -270,7 +269,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "Log Out",
+                        StringConstants.logOut,
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black87,
@@ -282,37 +281,6 @@ class _DashboardPageState extends State<DashboardPage> {
                   )),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget image_source_container(bool isCamera) {
-    return InkWell(
-      onTap: () async {
-        File? tempImage;
-        if (isCamera) {
-          tempImage = await pickImage(ImageSource.camera);
-          setState(() {
-            pickedImage = tempImage;
-          });
-        } else {
-          tempImage = await pickImage(ImageSource.gallery);
-          setState(() {
-            pickedImage = tempImage;
-          });
-        }
-      },
-      child: Container(
-        height: 40,
-        width: 40,
-        decoration: const BoxDecoration(
-          color: Colors.blue,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          isCamera == true ? Icons.camera : Icons.image,
-          color: Colors.white,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_cropper_demo_app/constants/string_constants.dart';
 
 import '../helper/authenticationFunctions.dart';
 
@@ -31,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text(StringConstants.profile),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
@@ -98,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 decoration: InputDecoration(
                                     prefixIcon:
                                         const Icon(Icons.person_outline),
-                                    hintText: name ?? "Name",
+                                    hintText: name ?? StringConstants.name,
                                     hintStyle:
                                         const TextStyle(color: Colors.black),
                                     fillColor: Colors.white,
@@ -119,30 +120,30 @@ class _ProfilePageState extends State<ProfilePage> {
                                   color: Colors.grey[600],
                                 ),
                                 const Text(
-                                  "  Gender: ",
+                                  StringConstants.gender_signup,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 16),
                                 ),
                                 Radio(
-                                    value: "Male",
+                                    value: StringConstants.male,
                                     groupValue: _gender,
                                     onChanged: (value) {
                                       setState(() {
                                         _gender = value ?? "";
                                       });
                                     }),
-                                const Text("Male",
+                                const Text(StringConstants.male,
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 16)),
                                 Radio(
-                                    value: "Female",
+                                    value: StringConstants.female,
                                     groupValue: _gender,
                                     onChanged: (value) {
                                       setState(() {
                                         _gender = value ?? "";
                                       });
                                     }),
-                                const Text("Female",
+                                const Text(StringConstants.female,
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 16)),
                               ],
@@ -155,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               )),
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                    hintText: birthDate ?? "Date of Birth",
+                                    hintText: birthDate ?? StringConstants.dob,
                                     hintStyle:
                                         const TextStyle(color: Colors.black),
                                     prefixIcon: const Icon(
@@ -184,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: TextFormField(
                                 readOnly: true,
                                 decoration: InputDecoration(
-                                    hintText: email1 ?? "Email",
+                                    hintText: email1 ?? StringConstants.email,
                                     hintStyle:
                                         const TextStyle(color: Colors.black),
                                     prefixIcon:
@@ -208,7 +209,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: TextFormField(
                                 readOnly: true,
                                 decoration: InputDecoration(
-                                    hintText: phoneNumber ?? "Phone Number",
+                                    hintText: phoneNumber ??
+                                        StringConstants.phone_number,
                                     hintStyle:
                                         const TextStyle(color: Colors.black),
                                     prefixIcon: const Icon(Icons.phone),
@@ -253,7 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       borderRadius: BorderRadius.circular(80.0),
                                     ))),
                                 child: const Text(
-                                  "Save",
+                                  StringConstants.SAVE,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),

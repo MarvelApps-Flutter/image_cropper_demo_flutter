@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_cropper_demo_app/screens/loginPage.dart';
 import 'package:image_cropper_demo_app/screens/splash_screen.dart';
 
 void main() {
@@ -13,21 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Image Cropper Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: SplashScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

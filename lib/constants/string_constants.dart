@@ -6,6 +6,13 @@ class StringConstants {
   static const String email = "Email";
 
   static const String login = "Login";
+  static const String dashboard = "Dashboard";
+  static const String defaultLabel = "Default";
+  static const String emailNotFound = "Email not found";
+  static const String settings = "Settings";
+  static const String profile = "Profile";
+  static const String changePassword = "Change Password";
+  static const String gallery = "Gallery";
   static const String signup = "Sign Up";
   static const String signin = "Sign In";
   static const String poweredBy = "Powered by :";
@@ -21,6 +28,7 @@ class StringConstants {
   static const String fullname = "Full Name";
   static const String create_password = "Create Password";
   static const String gender_signup = " Gender: ";
+  static const String logOut = "Log Out";
 
   static const String already_have_account = "Already have an account?";
 

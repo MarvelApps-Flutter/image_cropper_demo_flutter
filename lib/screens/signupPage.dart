@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_cropper_demo_app/constants/image_constants.dart';
+import 'package:image_cropper_demo_app/constants/string_constants.dart';
 import 'package:image_cropper_demo_app/screens/loginPage.dart';
 import 'package:intl/intl.dart';
 
@@ -13,7 +15,7 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-String gender = "Male";
+String gender = StringConstants.male;
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
@@ -42,7 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       left: 30, right: 30, top: 80, bottom: 20),
                   child: Column(children: [
                     Image.asset(
-                      "assets/successiveLogo.png",
+                      ImageConstant.successiveSignupLogo,
                       height: 80.0,
                       width: 80.0,
                     ),
@@ -52,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextFormField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        hintText: "Full Name",
+                        hintText: StringConstants.fullname,
                         prefixIcon: const Padding(
                             padding: EdgeInsetsDirectional.only(start: 10),
                             child: Icon(Icons.person)),
@@ -72,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextFormField(
                       controller: emailController,
                       decoration: InputDecoration(
-                        hintText: "Email",
+                        hintText: StringConstants.email,
                         prefixIcon: const Padding(
                           padding: EdgeInsetsDirectional.only(start: 10),
                           child: Icon(Icons.email),
@@ -96,7 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.phone,
                       controller: phoneController,
                       decoration: InputDecoration(
-                        hintText: "Phone Number",
+                        hintText: StringConstants.phone_number,
                         prefixIcon: const Padding(
                             padding: EdgeInsetsDirectional.only(start: 10),
                             child: Icon(Icons.phone)),
@@ -118,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       //keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
                         hintText: _birthDate == null
-                            ? 'Date Of Birth'
+                            ? StringConstants.dob
                             : dateFormat.format(_birthDate!).toString(),
                         hintStyle: TextStyle(color: Colors.grey[600]),
                         prefixIcon: const Icon(Icons.calendar_today),
@@ -161,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: passController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText: "Create Password",
+                        hintText: StringConstants.create_password,
                         prefixIcon: const Padding(
                             padding: EdgeInsetsDirectional.only(start: 10),
                             child: Icon(Icons.lock)),
@@ -182,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: confirmPassController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText: "Confirm Password",
+                        hintText: StringConstants.confirm_password,
                         prefixIcon: const Padding(
                             padding: EdgeInsetsDirectional.only(start: 10),
                             child: Icon(Icons.lock)),
@@ -219,30 +221,30 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Colors.grey[600],
                           ),
                           Text(
-                            " Gender: ",
+                            StringConstants.gender_signup,
                             style: TextStyle(
                                 color: Colors.grey[600], fontSize: 16),
                           ),
                           Radio(
-                              value: "Male",
+                              value: StringConstants.male,
                               groupValue: gender,
                               onChanged: (value) {
                                 setState(() {
                                   gender = value ?? "";
                                 });
                               }),
-                          Text("Male",
+                          Text(StringConstants.male,
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 16)),
                           Radio(
-                              value: "Female",
+                              value: StringConstants.female,
                               groupValue: gender,
                               onChanged: (value) {
                                 setState(() {
                                   gender = value ?? "";
                                 });
                               }),
-                          Text("Female",
+                          Text(StringConstants.female,
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 16)),
                         ],
@@ -296,20 +298,16 @@ class _SignUpPageState extends State<SignUpPage> {
                               borderRadius: BorderRadius.circular(80.0),
                             ))),
                         child: const Text(
-                          "Sign Up",
+                          StringConstants.signup,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
                     ),
-
-                    /*SizedBox(
-                      height: 5.0,
-                    ),*/
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Already have an account?",
+                          StringConstants.already_have_account,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         TextButton(
@@ -320,7 +318,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       builder: (context) => const LoginPage()));
                             },
                             child: const Text(
-                              "Sign In",
+                              StringConstants.signin,
                               style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold),

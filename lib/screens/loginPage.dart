@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:image_cropper_demo_app/constants/string_constants.dart';
 import 'package:image_cropper_demo_app/screens/dashboardPage.dart';
 import 'package:image_cropper_demo_app/screens/signupPage.dart';
 
+import '../constants/image_constants.dart';
 import '../helper/authenticationFunctions.dart';
 import '../helper/validationFunctions.dart';
 
@@ -151,12 +153,9 @@ class _LoginPageState extends State<LoginPage> {
                                     passwordController.text.toString());
 
                                 // Setting up the info in profile page
-                                //getList();
 
                                 List<String> personList = await getPersonList(
                                     emailController.text.toString());
-                                //await getEmail(emailController.text.toString());
-
                                 if (credentialExists && personList.isNotEmpty) {
                                   Navigator.push(
                                       context,
@@ -184,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(80.0),
                                 ))),
                             child: const Text(
-                              "Login",
+                              StringConstants.login,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -195,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 15),
                         Container(
                           child: const Text(
-                            'Continue with social media',
+                            StringConstants.continue_social_media,
                             style: TextStyle(fontSize: 17),
                           ),
                         ),
@@ -206,14 +205,14 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/fb.png',
+                              ImageConstant.FB_ICON,
                               height: 70,
                             ),
                             const SizedBox(
                               width: 15,
                             ),
                             Image.asset(
-                              'assets/google.png',
+                              ImageConstant.GOOGLE_ICON,
                               height: 60,
                             ),
                           ],
@@ -225,7 +224,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              " Don't have an Account?",
+                              StringConstants.dont_have_Account_msg,
                               style: TextStyle(fontSize: 20),
                             ),
                             Padding(
@@ -239,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                                               const SignUpPage()));
                                 },
                                 child: Text(
-                                  'Sign Up',
+                                  StringConstants.signup,
                                   style: TextStyle(
                                       color: Colors.blue[900],
                                       fontSize: 20,
