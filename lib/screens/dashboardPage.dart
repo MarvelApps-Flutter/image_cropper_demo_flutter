@@ -156,133 +156,55 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
 
               // Buttons
-
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilePage()));
-                  },
-                  child: Row(children: const [
-                    // Profile
-
-                    Icon(
-                      Icons.people_outline,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      StringConstants.profile,
-                      style: TextStyle(
-                          fontSize: 19,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.normal),
-                    ),
-                    Spacer(),
-                    Icon(Icons.arrow_right, color: Colors.black),
-                  ])),
+              drawerButtonSection(context, ProfilePage(),
+                  StringConstants.profile, Icons.people_outline),
 
               //Change Password
-              TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.lock_outline,
-                        color: Colors.black,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        StringConstants.changePassword,
-                        style: TextStyle(
-                            fontSize: 19,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      Spacer(),
-                      Icon(Icons.arrow_right, color: Colors.black),
-                    ],
-                  )),
-
+              drawerButtonSection(context, null, StringConstants.changePassword,
+                  Icons.lock_outline),
               // Gallery
-
-              TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.image_outlined,
-                        color: Colors.black,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        StringConstants.gallery,
-                        style: TextStyle(
-                            fontSize: 19,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      Spacer(),
-                      Icon(Icons.arrow_right, color: Colors.black),
-                    ],
-                  )),
-
+              drawerButtonSection(
+                  context, null, StringConstants.gallery, Icons.image_outlined),
               // Settings
-
-              TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.settings,
-                        color: Colors.black,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        StringConstants.settings,
-                        style: TextStyle(
-                            fontSize: 19,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      Spacer(),
-                      Icon(Icons.arrow_right, color: Colors.black),
-                    ],
-                  )),
-
+              drawerButtonSection(
+                  context, null, StringConstants.settings, Icons.settings),
               const Spacer(),
-
               // Sign Out
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.logout,
-                        color: Colors.black,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        StringConstants.logOut,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      Spacer(),
-                      Icon(Icons.arrow_right, color: Colors.black),
-                    ],
-                  )),
+              drawerButtonSection(
+                  context, LoginPage(), StringConstants.logOut, Icons.logout),
             ],
           ),
         ),
       ),
     );
+  }
+
+  TextButton drawerButtonSection(BuildContext context, Widget? navigatingScreen,
+      String buttonLabel, IconData buttonIcon) {
+    return TextButton(
+        onPressed: () {
+          if (navigatingScreen != null) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => navigatingScreen));
+          }
+        },
+        child: Row(
+          children: [
+            Icon(
+              buttonIcon,
+              color: Colors.black,
+            ),
+            SizedBox(width: 10),
+            Text(
+              buttonLabel,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.normal),
+            ),
+            Spacer(),
+            Icon(Icons.arrow_right, color: Colors.black),
+          ],
+        ));
   }
 }

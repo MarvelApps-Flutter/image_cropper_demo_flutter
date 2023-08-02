@@ -3,7 +3,6 @@ import 'package:image_cropper_demo_app/constants/image_constants.dart';
 import 'package:image_cropper_demo_app/constants/string_constants.dart';
 import 'package:image_cropper_demo_app/screens/loginPage.dart';
 import 'package:intl/intl.dart';
-
 import '../helper/personDatabaseHelper.dart';
 import '../helper/validationFunctions.dart';
 import '../models/personModel.dart';
@@ -32,7 +31,6 @@ class _SignUpPageState extends State<SignUpPage> {
     final node = FocusScope.of(context);
 
     return Scaffold(
-      //appBar: AppBar(),
       body: SingleChildScrollView(
         child: Center(
           child: FractionallySizedBox(
